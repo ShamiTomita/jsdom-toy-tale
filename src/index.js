@@ -13,3 +13,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+function fetchToys(){
+  fetch("http://localhost:3000/toys")
+  .then(response => response.json())
+  .then(json => showToys(json));
+}
+
+functon renderToys(json){
+  const toyCollection = document.getElementById("#toy-collection")
+  json.forEach(element=>{
+    let cardDiv = document.createElement("div")
+    cardDiv.className = "card"
+    let buttom = document.createElement("button")
+    button.className = "like-btn"
+    button.id = element.id
+    button.innerText = "Like Me!"
+    button.addEventListener("click", function(event){
+      addLikes(event)
+    })
+    let h2 = document.createElement("h2")
+    h2.innerHTML = element.name
+    let img = document.createElement("img")
+    img.src = element.image
+    img.alt = element.element
+    img.className = "toy-avatar"
+    let p = document.createElement("p")
+    p.innerText = `${element.likes} Likes`
+    cardDiv.append(h2, img, button, p)
+    toyCollection.appendChild(carDiv)
+  });
+}
